@@ -9,6 +9,7 @@ namespace lol
     {
         public Slider EnergySlider;
         public GameObject Slider;
+        public GameObject PlayerObject;
 
         public Player_Controller Player;
 
@@ -16,13 +17,19 @@ namespace lol
         private bool CanRun = true;
         private bool Otdishka = false;
 
+        public bool isRun = false;
+        public bool isWalk = false;
+        public bool isCrawling = false;
+        public bool isStay = true;
+
         private float Energy = 100;
         public float SkorostVichitania = 0.001f;
         public float SkorostPribavlenia = 0.01f;
 
-        public AudioSource Player2;
-        public AudioClip SighSound;
-        public AudioClip RunSound;
+        public AudioSource Audio;
+        public AudioClip WalkingSound;
+        public AudioClip RunningSound;
+        public AudioClip SlowstepsSound;
         
         void Start() 
         {
@@ -34,16 +41,16 @@ namespace lol
         {
             EnergySlider.value = Energy;
 
-            if (Input.GetKey(KeyCode.LeftShift) && Energy > 0 && CanRun)
+            if (Input.GetKey(KeyCode.LeftShift) && Energy > 0 && CanRun && isStay != false)
             {
                 Player.speed = 10;
                 Slider.SetActive(true);
                 Energy -= SkorostVichitania;
                 Vosstanovlenie = false;
-                Player2.clip = RunSound;
-                Player2.Play();
-                Player2.loop = true;
+                isRun = true;
             }
+
+            
 
             else
             {
@@ -52,12 +59,16 @@ namespace lol
                 {
                     Energy += SkorostPribavlenia;
                 }
+                isRun = false;
+            }
+
+            if(Energy >= 99)
+            {
+                Slider.SetActive(false);
             }
 
             if(Energy < 100 && Vosstanovlenie == false && Input.GetKeyUp(KeyCode.LeftShift))
             {
-                Player2.loop = false;
-                Player2.Stop();
                 StartCoroutine("WaitSomeSeconds");
             }
 
@@ -65,19 +76,39 @@ namespace lol
 
             if (Energy < 10 && Input.GetKeyUp(KeyCode.LeftShift) && Otdishka == false)
             {
-                Player2.Stop();
                 CanRun = false;
-                Player2.clip = SighSound;
-                Player2.Play();
                 StartCoroutine("Oddishka");
                 Otdishka = true;
+            }
+
+            if(isRun == false && Input.GetKey(KeyCode.LeftControl))
+            {
+                isCrawling = true;
+                Player.speed = 1.5f;
+            }
+            else if(isRun == false && Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                isCrawling = false;
+                Player.speed = 5f;
+            }
+
+
+
+            if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                isWalk = false;
+                isStay = true;
+            }
+            else
+            {
+                isWalk = true;
+                isStay = false;
             }
         }
 
         IEnumerator Oddishka()
         {
-            yield return new WaitForSeconds(10);
-            Player2.Stop();
+            yield return new WaitForSeconds(6);
             CanRun = true;
             Otdishka = false;
         }
