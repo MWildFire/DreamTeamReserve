@@ -66,11 +66,13 @@ namespace lol
                 Fl_Active = false;
                 FlashLight.SetActive(false);
             } // Отключение фонарика
+
+
+
         }
 
         void OnGUI()
         {
-            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 25, 25), Crosshair);
 
             if(Hint_E)
             {
@@ -84,6 +86,17 @@ namespace lol
                 GUI.Label(new Rect(20, 20, 160, 110), FlashlightImage);
                 GUI.EndGroup();
             }
+
+
+
+            /*if (FirstPict == true)
+            {
+                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 350, 600), FirstPictImage);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    FirstPict = false;
+                }
+            }*/
         }
         IEnumerator OffOneButton()
         {

@@ -102,7 +102,7 @@ namespace lol
             }
             else
             {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 25, 25), img_cross);
+                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 15, 15), img_cross);
             }
 
         }
