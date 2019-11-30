@@ -19,15 +19,20 @@ public class NMA : MonoBehaviour
     {
         if (Player != null)
         {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance < 2.0f)
-            {
-                Debug.Log("Поц тебя ударил");
+            float distance = Vector3.Distance(transform.position, Player.transform.position);
+            Ray ray = new Ray(vrag.gameObject.transform.position, transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit)){
+                if (distance < 2.0f)
+                {
+                    Debug.Log("Поц тебя ударил");
+                }
+                else if (distance < 6f)
+                {
+                    vrag.destination = Player.transform.position;
+                }
             }
-            else if (distance < 6f)
-            {
-                vrag.destination = player.transform.position;
-            }
+
         }
 
     }
