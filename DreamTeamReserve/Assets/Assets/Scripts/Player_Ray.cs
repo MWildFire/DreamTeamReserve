@@ -8,9 +8,11 @@ namespace lol
     public class Player_Ray : MonoBehaviour
     {
         public bool in_Object = false;
+        public bool Hint_E = false;
         private bool inventory = false;
 
         public Texture2D img_cross;
+        public Texture2D E_Hand_Image;
 
         List<Player_Item> list = new List<Player_Item>();
         public GameObject inventory_panel;
@@ -40,6 +42,10 @@ namespace lol
                     list.Add(item);
                     Destroy(info.collider.gameObject);
                 }
+            }
+            else
+            {
+                in_Object = false;
             }
             if (Input.GetKeyDown(KeyCode.I) && inventory == false)
             {
@@ -105,6 +111,11 @@ namespace lol
                 GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 15, 15), img_cross);
             }
 
+            if (Hint_E)
+            {
+                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + 35, 100, 100), E_Hand_Image);
+            }
         }
+            
     }
 }

@@ -8,17 +8,16 @@ namespace lol
     public class SecondRay : MonoBehaviour
     {
         public int CollectedPictures = 0;
-        public G_U_I Player_GUI;
         public Text CollectedText;
         void Start()
         {
 
         }
 
-        
+
         void Update()
         {
-            
+
 
             int Mask_Pictures = 1 << 11;
 
@@ -26,7 +25,7 @@ namespace lol
             Ray _ray = new Ray(transform.position, transform.forward);
             if (Physics.Raycast(_ray, out info, 2.5f, Mask_Pictures))
             {
-                Player_GUI.Hint_E = true;
+                /*Player_GUI.Hint_E = true;
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Player_GUI.Hint_E = false;
@@ -40,7 +39,8 @@ namespace lol
                 Player_GUI.Hint_E = false;
             }
 
-            CollectedText.text = "Собрано: " + CollectedPictures.ToString();
-        }
+            CollectedText.text = "Собрано: " + CollectedPictures.ToString();*/
+            }
+        }   
     }
 }
