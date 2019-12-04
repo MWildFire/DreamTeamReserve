@@ -11,6 +11,9 @@ namespace lol
         public bool Hint_E = false;
         private bool inventory = false;
 
+        public int CollectedPictures = 0;
+        public Text CollectedText;
+
         public Texture2D img_cross;
         public Texture2D E_Hand_Image;
 
@@ -29,6 +32,7 @@ namespace lol
             Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.black);
 
             int Mask_Items = 1 << 10;
+            int Mask_Pictures = 1 << 11;
 
 
             RaycastHit info;
@@ -47,6 +51,29 @@ namespace lol
             {
                 in_Object = false;
             }
+
+            // ------------------------ Собирание листочков ------------------------
+
+            if (Physics.Raycast(_ray, out info, 2.5f, Mask_Pictures))
+            {
+                Hint_E = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Hint_E = false;
+                    CollectedPictures += 1;
+                    Destroy(info.collider.gameObject);
+                }
+                
+            }
+            else
+            {
+                Hint_E = false;
+            }
+
+            CollectedText.text = "Собрано: " + CollectedPictures.ToString();
+
+            // ----------------------------------------------------------------------
+
             if (Input.GetKeyDown(KeyCode.I) && inventory == false)
             {
                 inventory_panel.SetActive(true);
