@@ -81,7 +81,8 @@ namespace lol
                 if (Input.GetKey(KeyCode.LeftControl))
                 {
                     _Ch.height = 1;
-                    speed = 1f;
+                    speed = 1.0f;
+                    
                 }
                 
                 else
@@ -118,6 +119,20 @@ namespace lol
                 }
 
                 // ------------------------------------------------------------------------------------
+
+                if((x_Mov != 0 || z_Mov != 0) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+                {
+                    PlaySoundWalking();
+                }
+                else if ((x_Mov != 0 || z_Mov != 0) && Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+                {
+                    PlaySoundRunning();
+                }
+                else if ((x_Mov != 0 || z_Mov != 0) && !Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+                {
+                    PlaySoundCrowling();
+                }
+
                 _jump = 0;
                 if (Input.GetKeyDown(KeyCode.Space) && Sprint > 5)
                 {
@@ -133,7 +148,34 @@ namespace lol
             move = transform.TransformDirection(move);
             _Ch.Move(move);
             //---------------------------------------------------------------------------------------
+
         }
+
+
+        //---------------------------------- Звуки шагов ----------------------------------------
+
+        private void PlaySoundWalking()
+        {
+            SoundPlayer.clip = WalkingSound;
+            SoundPlayer.PlayOneShot(SoundPlayer.clip);
+            SoundPlayer.clip = null;
+        }
+
+        private void PlaySoundRunning()
+        {
+            SoundPlayer.clip = RunningSound;
+            SoundPlayer.PlayOneShot(SoundPlayer.clip);
+            SoundPlayer.clip = null;
+        }
+
+        private void PlaySoundCrowling()
+        {
+            SoundPlayer.clip = CrouchSound;
+            SoundPlayer.PlayOneShot(SoundPlayer.clip);
+            SoundPlayer.clip = null;
+        }
+
+        //---------------------------------------------------------------------------------------
 
     }
 }
