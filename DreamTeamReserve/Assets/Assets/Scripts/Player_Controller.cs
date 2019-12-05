@@ -7,6 +7,11 @@ namespace lol
 {
     public class Player_Controller : MonoBehaviour
     {
+        // Переменные под звуки
+        public AudioSource SoundPlayer;
+        public AudioClip WalkingSound;
+        public AudioClip RunningSound;
+        public AudioClip CrouchSound;
         // Переменные под спринт
         public Slider Slider_Sprint;
         private float Sprint = 100;
@@ -26,7 +31,7 @@ namespace lol
         private float xRotVelocity;
         private float yRotVelocity;
         // Переменные пок клавиатуру
-        public float speed = 10f;
+        public float speed = 8f;
         public float gravity = -10f;
 
         public float _jump_pow = 10f;
@@ -76,6 +81,7 @@ namespace lol
                 if (Input.GetKey(KeyCode.LeftControl))
                 {
                     _Ch.height = 1;
+                    speed = 1f;
                 }
                 
                 else
@@ -83,25 +89,27 @@ namespace lol
                     if (Physics.Raycast(transform.position, transform.up, out Crouch, 1f))
                     {
                         _Ch.height = 1;
+                        speed = 1f;
                     }
                     else
                     {
                         _Ch.height = 2;
+                        speed = 8f;
                     }
                 }
 
                 // ---------------------------------------- Спринт ------------------------------------
 
                 
-                if (Input.GetKey(KeyCode.LeftShift) && Sprint > 10 && (x_Mov != 0 || z_Mov != 0))
+                if (Input.GetKey(KeyCode.LeftShift) && Sprint > 10 && (x_Mov != 0 || z_Mov != 0) && !Input.GetKey(KeyCode.LeftControl))
                 {
-                    speed = 15f;
+                    speed = 12f;
                     Sprint -= 0.3f;
                     
                 }
                 else
                 {
-                    speed = 10f;
+                    speed = 8f;
                     if (Sprint <= 100)
                     {
                         Sprint += 0.1f;
