@@ -4,35 +4,31 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-
-public class EnemyAI : MonoBehaviour
+namespace game
 {
-    public Transform[] pos;
-
-
-    private NavMeshAgent agent;
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyAI : MonoBehaviour
     {
-        agent = GetComponent<NavMeshAgent>();
-    }
+        public Transform[] pos;
+        public int value = Random.Range(0, 3);
+        public int CurrentPoint;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        int value = Random.Range(0, 3);
-        if (other.gameObject.CompareTag("Point"))
+        public NavMeshAgent agent;
+
+
+
+        // Start is called before the first frame update
+        void Start()
         {
+            agent = GetComponent<NavMeshAgent>();
             agent.destination = pos[value].position;
         }
 
-    }
+        
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
+        }
     }
 }
