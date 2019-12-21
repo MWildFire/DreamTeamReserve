@@ -120,7 +120,7 @@ namespace lol
 
                 // ------------------------------------------------------------------------------------
 
-                if((x_Mov != 0 || z_Mov != 0) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+                /*if((x_Mov != 0 || z_Mov != 0) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
                 {
                     PlaySoundWalking();
                 }
@@ -131,7 +131,7 @@ namespace lol
                 else if ((x_Mov != 0 || z_Mov != 0) && !Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
                 {
                     PlaySoundCrowling();
-                }
+                }*/
 
                 _jump = 0;
                 if (Input.GetKeyDown(KeyCode.Space) && Sprint > 5)
@@ -154,7 +154,7 @@ namespace lol
 
         //---------------------------------- Звуки шагов ----------------------------------------
 
-        private void PlaySoundWalking()
+        /*private void PlaySoundWalking()
         {
             SoundPlayer.clip = WalkingSound;
             SoundPlayer.PlayOneShot(SoundPlayer.clip);
@@ -173,7 +173,7 @@ namespace lol
             SoundPlayer.clip = CrouchSound;
             SoundPlayer.PlayOneShot(SoundPlayer.clip);
             SoundPlayer.clip = null;
-        }
+        }*/
 
         //---------------------------------------------------------------------------------------
 
