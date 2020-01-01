@@ -51,7 +51,7 @@ namespace lol
 
                 if (GUI.Button(new Rect(125, 300, 500, 100), "Начать"))
                 {
-                    SceneManager.LoadScene(1);
+                    SceneManager.LoadScene(2);
                 }
 
                 if (GUI.Button(new Rect(125, 425, 500, 100), "Настройки"))

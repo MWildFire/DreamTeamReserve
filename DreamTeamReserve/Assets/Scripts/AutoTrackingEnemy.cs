@@ -43,7 +43,7 @@ public class AutoTrackingEnemy : MonoBehaviour
                 Player.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    SceneManager.LoadSceneAsync(1);
+                    SceneManager.LoadSceneAsync(2);
                     DeathPanel.SetActive(false);
                     isDeath = false;
                 }
