@@ -7,6 +7,8 @@ namespace lol
 {
     public class Player_Ray : MonoBehaviour
     {
+        public PauseInGame GeneralPauseScript;
+
         public bool in_Object = false;
         public bool Hint_E = false;
         private bool inventory = false;
@@ -14,7 +16,6 @@ namespace lol
         public int CollectedPictures = 0;
         public Text CollectedText;
 
-        public Texture2D img_cross;
         public Texture2D E_Hand_Image;
 
         List<Player_Item> list = new List<Player_Item>();
@@ -74,13 +75,11 @@ namespace lol
 
             // ----------------------------------------------------------------------
 
-            if (Input.GetKeyDown(KeyCode.I) && inventory == false)
+            if (Input.GetKeyDown(KeyCode.I) && inventory == false && GeneralPauseScript.isPaused == false)
             {
                 inventory_panel.SetActive(true);
                 inventory = true;
-                Time.timeScale = 0f;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                GeneralPauseScript.isPaused = true;
 
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
@@ -100,13 +99,11 @@ namespace lol
                 }
 
             }
-            else if (Input.GetKeyDown(KeyCode.I) && inventory)
+            else if (Input.GetKeyDown(KeyCode.I) && inventory && GeneralPauseScript.isPaused == true)
             {
                 inventory_panel.SetActive(false);
                 inventory = false;
-                Time.timeScale = 1f;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                GeneralPauseScript.isPaused = false;
 
                 for (int i = 0; i < inventory_layout.transform.childCount; i++)
                 {
@@ -129,15 +126,6 @@ namespace lol
 
         private void OnGUI()
         {
-            if (inventory)
-            {
-
-            }
-            else
-            {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 15, 15), img_cross);
-            }
-
             if (Hint_E)
             {
                 GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + 35, 100, 100), E_Hand_Image);
