@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace lol
 {
@@ -9,9 +10,10 @@ namespace lol
         public PauseInGame GeneralPauseScript;
         private bool isOpen;
         public GameObject PausePanel;
+        public GameObject OptionsPanel;
         void Start()
         {
-
+            PausePanel.SetActive(false);
         }
 
 
@@ -23,12 +25,48 @@ namespace lol
                 PausePanel.SetActive(true);
                 isOpen = true;
             }
-            else if(Input.GetKeyDown(KeyCode.Tab) && isOpen == true && GeneralPauseScript.isPaused == true)
+            else if (Input.GetKeyDown(KeyCode.Tab) && isOpen == true && GeneralPauseScript.isPaused == true)
             {
                 GeneralPauseScript.isPaused = false;
                 PausePanel.SetActive(false);
                 isOpen = false;
             }
         }
+
+        // ========================== Кнопки =============================
+
+        public void ContinueButton()
+        {
+            GeneralPauseScript.isPaused = false;
+            PausePanel.SetActive(false);
+            isOpen = false;
+        }
+
+        public void RestartButton()
+        {
+            SceneManager.LoadSceneAsync(2);
+        }
+
+        public void OptionsButton()
+        {
+            OptionsPanel.SetActive(true);
+        }
+
+        public void BackToMenu()
+        {
+            OptionsPanel.SetActive(false);
+        }
+
+        public void BackToMainMenu()
+        {
+            SceneManager.LoadSceneAsync(1);
+        }
+
+        public void BackToScreen()
+        {
+            Application.Quit();
+        }
+
+        // ===============================================================
     }
 }
