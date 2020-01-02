@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -17,13 +18,50 @@ namespace lol
         public GameObject OptionsPanel;
         public GameObject CreditsPanel;
 
+        //========================= Настройки =========================
+
+        public Dropdown ResolutionDropdown;
+        Resolution[] res;
+
         public Toggle Fullscreen;
+
+        public Dropdown QualitySettinsDropdown;
+
+        //=============================================================
+
+
 
         void Start()
         {
             OthersPanel.SetActive(false);
             OptionsPanel.SetActive(false);
             CreditsPanel.SetActive(false);
+
+            //================================= Resolution =================================
+
+            Resolution[] resolution = Screen.resolutions;
+            res = resolution.Distinct().ToArray();
+            string[] strRes = new string[resolution.Length];
+            for (int i = 0; i < res.Length; i++)
+            {
+                strRes[i] = res[i].width.ToString() + "x" + res[i].height.ToString();
+            }
+            ResolutionDropdown.ClearOptions();
+            ResolutionDropdown.AddOptions(strRes.ToList());
+            Screen.SetResolution(res[res.Length - 1].width, res[res.Length - 1].height, true);
+            ResolutionDropdown.value = res.Length - 1;
+
+            //==============================================================================
+
+
+
+            //================================== Quality ===================================
+
+            QualitySettinsDropdown.ClearOptions();
+            QualitySettinsDropdown.AddOptions(QualitySettings.names.ToList());
+            QualitySettinsDropdown.value = QualitySettings.GetQualityLevel();
+
+            //==============================================================================
         }
 
 
@@ -66,6 +104,21 @@ namespace lol
         public void Exit()
         {
             Application.Quit();
+        }
+
+        //============================================================
+
+
+
+        //======================== Настройки =========================
+        public void SetRes()
+        {
+            Screen.SetResolution(res[ResolutionDropdown.value].width, res[ResolutionDropdown.value].height, true);
+        }
+
+        public void SetQuality()
+        {
+            QualitySettings.SetQualityLevel(QualitySettinsDropdown.value);
         }
 
         //============================================================
