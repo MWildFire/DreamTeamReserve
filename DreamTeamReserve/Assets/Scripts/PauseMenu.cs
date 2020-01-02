@@ -19,13 +19,13 @@ namespace lol
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Tab) && isOpen == false && GeneralPauseScript.isPaused == false)
+            if (Input.GetKeyDown(KeyCode.Escape) && isOpen == false && GeneralPauseScript.isPaused == false)
             {
                 GeneralPauseScript.isPaused = true;
                 PausePanel.SetActive(true);
                 isOpen = true;
             }
-            else if (Input.GetKeyDown(KeyCode.Tab) && isOpen == true && GeneralPauseScript.isPaused == true)
+            else if (Input.GetKeyDown(KeyCode.Escape) && isOpen == true && GeneralPauseScript.isPaused == true)
             {
                 GeneralPauseScript.isPaused = false;
                 PausePanel.SetActive(false);
