@@ -44,7 +44,7 @@ namespace lol
 
         public void RestartButton()
         {
-            SceneManager.LoadSceneAsync(2);
+            SceneManager.LoadSceneAsync(1);
         }
 
         public void OptionsButton()
@@ -59,7 +59,7 @@ namespace lol
 
         public void BackToMainMenu()
         {
-            SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadSceneAsync(0);
         }
 
         public void BackToScreen()
