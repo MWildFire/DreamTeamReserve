@@ -17,6 +17,8 @@ namespace lol
         public GameObject OptionsPanel;
         public GameObject CreditsPanel;
 
+        public Toggle Fullscreen;
+
         void Start()
         {
             OthersPanel.SetActive(false);
@@ -27,7 +29,10 @@ namespace lol
 
         void Update()
         {
+            if(Fullscreen.isOn == true)
+            {
 
+            }
         }
 
         //========================== Кнопки ==========================
