@@ -39,6 +39,8 @@ namespace lol
 
             //================================= Resolution =================================
 
+            Screen.fullScreen = true;
+
             Resolution[] resolution = Screen.resolutions;
             res = resolution.Distinct().ToArray();
             string[] strRes = new string[resolution.Length];
@@ -48,7 +50,7 @@ namespace lol
             }
             ResolutionDropdown.ClearOptions();
             ResolutionDropdown.AddOptions(strRes.ToList());
-            Screen.SetResolution(res[res.Length - 1].width, res[res.Length - 1].height, true);
+            Screen.SetResolution(res[res.Length - 1].width, res[res.Length - 1].height, Screen.fullScreen);
             ResolutionDropdown.value = res.Length - 1;
 
             //==============================================================================
@@ -67,10 +69,6 @@ namespace lol
 
         void Update()
         {
-            if(Fullscreen.isOn == true)
-            {
-
-            }
         }
 
         //========================== Кнопки ==========================
@@ -113,12 +111,17 @@ namespace lol
         //======================== Настройки =========================
         public void SetRes()
         {
-            Screen.SetResolution(res[ResolutionDropdown.value].width, res[ResolutionDropdown.value].height, true);
+            Screen.SetResolution(res[ResolutionDropdown.value].width, res[ResolutionDropdown.value].height, Screen.fullScreen);
         }
 
         public void SetQuality()
         {
             QualitySettings.SetQualityLevel(QualitySettinsDropdown.value);
+        }
+
+        public void ScreenMode()
+        {
+            Screen.fullScreen = Fullscreen.isOn;
         }
 
         //============================================================

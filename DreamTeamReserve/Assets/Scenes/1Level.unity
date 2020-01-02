@@ -46070,6 +46070,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812a8dbf04d526842917c9e9f9c92792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GeneralSound: 100
+  Music: 100
+  Other: 100
+  Sounds: 100
 --- !u!4 &1506835167
 Transform:
   m_ObjectHideFlags: 0
@@ -46096,6 +46100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad1d8cd57ec7754faaf77e110ef583d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 950503935}
   isPaused: 0
   img_cross: {fileID: 2800000, guid: b2651d35b4ecadd48bdf331dcb745693, type: 3}
 --- !u!1001 &1507624144

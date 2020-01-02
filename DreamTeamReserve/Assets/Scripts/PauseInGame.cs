@@ -6,11 +6,14 @@ namespace lol
 {
     public class PauseInGame : MonoBehaviour
     {
+        public GameObject Player;
+        private Player_Controller Controller;
+        [HideInInspector]
         public bool isPaused;
         public Texture2D img_cross;
         void Start()
         {
-
+            Controller = Player.GetComponent<Player_Controller>();
         }
 
 
@@ -21,12 +24,14 @@ namespace lol
                 Time.timeScale = 0f;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                Controller.enabled = false;
             }
             else
             {
                 Time.timeScale = 1f;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Controller.enabled = true;
             }
         }
 
