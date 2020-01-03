@@ -15,6 +15,9 @@ namespace lol
 
         public int CollectedPictures = 0;
         public Text CollectedText;
+        public GameObject note;
+        public GameObject note_image;
+        private bool isOpen;
 
         public Texture2D E_Hand_Image;
 
@@ -26,6 +29,7 @@ namespace lol
         void Start()
         {
             inventory_panel.SetActive(false);
+            note.SetActive(false);
         }
 
         void Update()
@@ -53,22 +57,48 @@ namespace lol
                 in_Object = false;
             }
 
-            // ------------------------ Собирание листочков ------------------------
-
-            if (Physics.Raycast(_ray, out info, 2.5f, Mask_Pictures))
+            if (in_Object)
             {
                 Hint_E = true;
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Hint_E = false;
-                    CollectedPictures += 1;
-                    Destroy(info.collider.gameObject);
-                }
-                
             }
-            else
+            else if(in_Object == false && !Physics.Raycast(_ray, out info, 2.5f, Mask_Pictures))
             {
                 Hint_E = false;
+            }
+
+            // ------------------------ Собирание листочков ------------------------
+
+            Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
+            if(GeneralPauseScript.isPaused == false)
+            {
+                if (Physics.Raycast(ray, out hit, 2.5f))
+                {
+                    
+                    if (hit.collider.GetComponent<Note>())
+                    {
+                        Hint_E = true;
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            note.SetActive(true);
+                            note_image.GetComponent<Image>().sprite = hit.collider.GetComponent<Note>().note_image;
+                            isOpen = true;
+                            Destroy(hit.collider.gameObject);
+                            CollectedPictures += 1;
+                            Hint_E = false;
+                            GeneralPauseScript.isPaused = true;
+                        }
+                    }
+                }
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.Escape) && isOpen && GeneralPauseScript.isPaused == true)
+            {
+                note.SetActive(false);
+                note_image.GetComponent<Image>().sprite = null;
+                isOpen = false;
+                GeneralPauseScript.isPaused = false;
             }
 
             CollectedText.text = "Собрано: " + CollectedPictures.ToString();
@@ -123,6 +153,8 @@ namespace lol
             Destroy(obj);
             list.Remove(it);
         }
+
+
 
         private void OnGUI()
         {
