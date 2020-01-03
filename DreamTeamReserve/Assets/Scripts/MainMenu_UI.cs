@@ -14,14 +14,14 @@ namespace lol
         public GameObject OptionsPanel;
         public GameObject CreditsPanel;
 
+        //========================= Настройки =========================
+
         public Slider GeneralSounds;
         public Slider Music;
         public Slider Sounds;
         public Slider Other;
 
         public Toggle Mute;
-
-        //========================= Настройки =========================
 
         public Dropdown ResolutionDropdown;
         Resolution[] res;
@@ -112,7 +112,7 @@ namespace lol
             }
             else
             {
-                GeneralSounds.value = 50;
+                GeneralSounds.value = 0.5f;
             }
 
             if (PlayerPrefs.HasKey("Music"))
@@ -121,7 +121,7 @@ namespace lol
             }
             else
             {
-                Music.value = 50;
+                Music.value = 0.5f;
             }
 
             if (PlayerPrefs.HasKey("Sounds"))
@@ -130,7 +130,7 @@ namespace lol
             }
             else
             {
-                Sounds.value = 50;
+                Sounds.value = 0.5f;
             }
 
             if (PlayerPrefs.HasKey("Other"))
@@ -139,7 +139,7 @@ namespace lol
             }
             else
             {
-                Other.value = 50;
+                Other.value = 0.5f;
             }
 
 
