@@ -14,7 +14,6 @@ namespace lol
         public GameObject OptionsPanel;
         public GameObject CreditsPanel;
 
-
         //========================= Настройки =========================
 
         public Slider GeneralSounds;

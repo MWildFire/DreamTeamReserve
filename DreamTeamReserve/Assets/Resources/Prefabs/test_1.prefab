@@ -112,7 +112,7 @@ MonoBehaviour:
   descriptionItem: Just Cube
   pathIcon: Image/cube
   pathPrefab: Prefabs/test_1
-  isRemovable: 1
+  isRemovable: 0
   customEvent:
     m_PersistentCalls:
       m_Calls: []
