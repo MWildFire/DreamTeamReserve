@@ -14,6 +14,7 @@ namespace lol
         public GameObject OptionsPanel;
         public GameObject CreditsPanel;
 
+
         //========================= Настройки =========================
 
         public Slider GeneralSounds;
@@ -39,6 +40,8 @@ namespace lol
             OthersPanel.SetActive(false);
             OptionsPanel.SetActive(false);
             CreditsPanel.SetActive(false);
+
+            
 
             //================================= Resolution =================================
 
@@ -160,6 +163,11 @@ namespace lol
             }
 
             // =============================================================================
+        }
+
+        void Update()
+        {
+            
         }
 
         //========================== Кнопки ==========================
