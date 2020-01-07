@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Cutscene : MonoBehaviour
 {
+    [HideInInspector]
     public bool isLoad;
-    private bool isOn = true;
+    [HideInInspector]
+    public bool isOn = true;
     private bool isPressed;
     public GameObject text;
 
@@ -18,7 +20,11 @@ public class Cutscene : MonoBehaviour
 
         if(isOn == true)
         {
-            StartCoroutine("Timer2");
+            Image.SetActive(true);
+        }
+        else
+        {
+            Image.SetActive(false);
         }
 
         // =================================================================
@@ -51,13 +57,5 @@ public class Cutscene : MonoBehaviour
         yield return new WaitForSeconds(2f);
         text.SetActive(false);
         isPressed = false;
-    }
-    IEnumerator Timer2()
-    {
-        yield return new WaitForSeconds(15f);
-        Image.SetActive(true);
-        yield return new WaitForSeconds(6f);
-        Image.SetActive(false);
-        isOn = false;
     }
 }
