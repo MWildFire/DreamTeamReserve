@@ -21,7 +21,7 @@ namespace lol
         {
             if (isPaused)
             {
-                Time.timeScale = 0f;
+                Time.timeScale = 1f;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 Controller.enabled = false;
