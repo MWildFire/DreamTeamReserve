@@ -6,8 +6,9 @@ public class DialogTrigger : MonoBehaviour
 {
     public Dialog dialog;
     public KeyCode ButtonForInteractive;
-    public bool inZone = false;
+    public bool inZone;
     public Player_Controller Controller;
+    public GameObject Hint;
 
     /*public void TriggerDialog()
     {
@@ -24,13 +25,21 @@ public class DialogTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(ButtonForInteractive))
         {
-            if (inZone == true)
+            if (inZone == true && Controller.enabled == true)
             {
                 FindObjectOfType<DialogManager>().StartDialog(dialog);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 Controller.enabled = false;
             }
+        }
+        if (inZone)
+        {
+            Hint.SetActive(true);
+        }
+        else
+        {
+            Hint.SetActive(false);
         }
     }
 

@@ -11,9 +11,12 @@ namespace lol
         [HideInInspector]
         public bool isPaused;
         public Texture2D img_cross;
+        public GameObject GreyPanel;
+        public GameObject[] HideObjects;
         void Start()
         {
             Controller = Player.GetComponent<Player_Controller>();
+            GreyPanel.SetActive(false);
         }
 
 
@@ -21,10 +24,27 @@ namespace lol
         {
             if (isPaused)
             {
+                DisplayUI();
+            }
+            else
+            {
+                DisplayUI();
+            }
+        }
+
+        public void DisplayUI()
+        {
+            if (isPaused)
+            {
                 Time.timeScale = 1f;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 Controller.enabled = false;
+                GreyPanel.SetActive(true);
+                for (int i = 0; i < HideObjects.Length; i++)
+                {
+                    HideObjects[i].SetActive(false);
+                }
             }
             else
             {
@@ -32,6 +52,11 @@ namespace lol
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Controller.enabled = true;
+                GreyPanel.SetActive(false);
+                for (int i = 0; i < HideObjects.Length; i++)
+                {
+                    HideObjects[i].SetActive(true);
+                }
             }
         }
 
