@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameItem: Cube
-  id: 5
+  id: 10
   countItem: 0
   isStackable: 0
   descriptionItem: Just Cube

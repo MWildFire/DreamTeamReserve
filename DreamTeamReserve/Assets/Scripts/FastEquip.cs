@@ -10,8 +10,6 @@ namespace lol
         [HideInInspector]
         public List<Item> item;
         public GameObject cellContainer;
-        public PauseInGame OptionsObject;
-        public GameObject player;
 
         void Start()
         {
@@ -48,19 +46,6 @@ namespace lol
 
         void AddItem(Item currentItem)
         {
-            if (currentItem.isStackable)
-            {
-                AddStackableItem(currentItem);
-            }
-            else
-            {
-                AddUnstackableItem(currentItem);
-            }
-        }
-
-        void AddUnstackableItem(Item currentItem)
-        {
-
             for (int i = 0; i < item.Count; i++)
             {
                 if (item[i].id == 0)
@@ -70,24 +55,9 @@ namespace lol
                     DisplayItems();
                     Destroy(currentItem.gameObject);
                     break;
+
                 }
             }
-        }
-
-        void AddStackableItem(Item currentItem)
-        {
-
-            for (int i = 0; i < item.Count; i++)
-            {
-                if (item[i].id == currentItem.id)
-                {
-                    item[i].countItem++;
-                    DisplayItems();
-                    Destroy(currentItem.gameObject);
-                    return;
-                }
-            }
-            AddUnstackableItem(currentItem);
         }
 
         public void DisplayItems()
