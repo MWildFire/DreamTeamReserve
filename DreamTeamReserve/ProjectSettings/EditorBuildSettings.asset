@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/FirstFirst.unity
+    path: 
     guid: 151b5a9f315a22447b26806c7a681a72
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartCutscene.unity
     guid: ece83f654564c1548bb396a62d8b0410
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 8f8a552cf4ec25448a4653ebaba9f444
   m_configObjects: {}

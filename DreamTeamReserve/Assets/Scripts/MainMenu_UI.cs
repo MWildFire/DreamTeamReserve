@@ -12,7 +12,6 @@ namespace lol
 
         public GameObject OthersPanel;
         public GameObject OptionsPanel;
-        public GameObject CreditsPanel;
 
         //========================= Настройки =========================
 
@@ -38,8 +37,6 @@ namespace lol
         {
             OthersPanel.SetActive(false);
             OptionsPanel.SetActive(false);
-            CreditsPanel.SetActive(false);
-
             
 
             //================================= Resolution =================================
@@ -184,15 +181,13 @@ namespace lol
 
         public void Credits()
         {
-            OthersPanel.SetActive(true);
-            CreditsPanel.SetActive(true);
+            SceneManager.LoadSceneAsync(3);
         }
 
         public void BackToMenu()
         {
             OthersPanel.SetActive(false);
             OptionsPanel.SetActive(false);
-            CreditsPanel.SetActive(false);
         }
 
         public void Exit()
