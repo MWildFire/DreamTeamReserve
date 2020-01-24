@@ -105,6 +105,21 @@ namespace lol
 
             // ----------------------------------------------------------------------
 
+            if(Physics.Raycast(ray,out hit, 2.5f))
+            {
+                if (hit.collider.GetComponent<Keypad>())
+                {
+                    Hint_E = true;
+                    if (Input.GetKeyDown(KeyCode.E) && GeneralPauseScript.isPaused == false)
+                    {
+                        GeneralPauseScript.isPaused = true;
+                        hit.collider.GetComponent<Keypad>().OpenPanel();
+                    }
+                }
+            }
+
+            // ----------------------------------------------------------------------
+
             if (Input.GetKeyDown(KeyCode.I) && inventory == false && GeneralPauseScript.isPaused == false)
             {
                 inventory_panel.SetActive(true);

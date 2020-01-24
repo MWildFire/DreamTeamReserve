@@ -3,67 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Keypad : MonoBehaviour
+namespace lol
 {
-    public 
-    void Start()
+    public class Keypad : MonoBehaviour
     {
-        
-    }
+        public InputField PassField;
+        public string Password;
+        public GameObject KeypadPanel;
+        [HideInInspector]
+        public bool canOpen;
+        public PauseInGame GeneralPauseObject;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public void OpenPanel()
+        {
+            KeypadPanel.SetActive(true);
+        }
 
-    public void Button1()
-    {
+        public void Confirm()
+        {
+            if (PassField.text == Password)
+            {
+                Cancel();
+                canOpen = true;
+            }
+        }
 
-    }
+        public void Cancel()
+        {
+            KeypadPanel.SetActive(false);
+            PassField.text = "";
+            GeneralPauseObject.isPaused = false;
+        }
 
-    public void Button2()
-    {
-
-    }
-
-    public void Button3()
-    {
-
-    }
-
-    public void Button4()
-    {
-
-    }
-
-    public void Button5()
-    {
-
-    }
-
-    public void Button6()
-    {
-
-    }
-
-    public void Button7()
-    {
-
-    }
-
-    public void Button8()
-    {
-
-    }
-
-    public void Button9()
-    {
-
-    }
-
-    public void Clear()
-    {
-
+        public void Clear()
+        {
+            PassField.text = "";
+        }
     }
 }
