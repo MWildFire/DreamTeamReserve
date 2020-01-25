@@ -105,15 +105,23 @@ namespace lol
 
             // ----------------------------------------------------------------------
 
-            if(Physics.Raycast(ray,out hit, 2.5f))
+            Ray kp = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+            RaycastHit find_kp;
+
+            Debug.DrawRay(transform.position, transform.up, Color.cyan, 2.5f);
+            if (GeneralPauseScript.isPaused == false)
             {
-                if (hit.collider.GetComponent<Keypad>())
+                if (Physics.Raycast(kp, out find_kp, 2.5f))
                 {
-                    Hint_E = true;
-                    if (Input.GetKeyDown(KeyCode.E) && GeneralPauseScript.isPaused == false)
+                    if (find_kp.collider.GetComponent<Keypad>())
                     {
-                        GeneralPauseScript.isPaused = true;
-                        hit.collider.GetComponent<Keypad>().OpenPanel();
+                        Hint_E = true;
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            GeneralPauseScript.isPaused = true;
+                            find_kp.collider.GetComponent<Keypad>().OpenPanel();
+                        }
+                        
                     }
                 }
             }
